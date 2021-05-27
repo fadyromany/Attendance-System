@@ -1,0 +1,185 @@
+﻿@*@inject SignInManager<IdentityUser> signInManager;
+
+
+    <html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>@ViewData["Title"] - Attendance_System</title>
+        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+        <link rel="stylesheet" href="~/css/site.css" />
+    </head>
+    <body>
+        <header>
+            <div class="container">
+                <nav class="navbar navbar-expand-sm  navbar-dark bg-dark ">
+                    <a class="navbar-brand" asp-action="index" asp-controller="Employee">
+                        <img src="/images/employees.png" width="30" height="30" alt="Alternate Text" />
+                    </a>
+
+                    <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#collapsiblNavbar">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+
+                    <div class="collapse navbar-collapse" id="collapsiblNavbar">
+                        <ul class="navbar-nav">
+                            <li class="nav-item">
+                                <a asp-action="index" asp-controller="Employee" class="nav-link"> List </a>
+                            </li>
+                            |
+                            <li class="nav-item">
+                                <a asp-action="create" asp-controller="Employee" class="nav-link"> Create </a>
+                            </li>
+
+                        </ul>
+
+                        <ul class="navbar-nav ml-auto">
+
+                        @if (SignInManager.)
+                        {
+                            <li class="nav-item">
+                                <form method="post" asp-controller="account" asp-action="logout">
+                                    <button type="submit" style="width:auto"
+                                            class="nav-link btn btn-link py-0">
+                                        Logout @User.Identity.Name
+                                    </button>
+                                </form>
+                            </li>
+                        }
+                        else
+                          {
+                        <ul class="navbar-nav ml-auto">
+                            <li class="nav-item">
+                                <a class="nav-link" asp-controller="admin" asp-action="register">
+                                    Register
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" asp-controller="admin" asp-action="login">
+                                    Login
+                                </a>
+                            </li>
+                            }
+
+
+                        </ul>
+
+                        </div>
+
+                </nav>
+            </div>
+
+
+        </header>
+        <div class="container">
+            <main role="main" class="pb-3">
+                @RenderBody()
+            </main>
+        </div>
+
+        <footer class="border-top footer text-muted">
+            <div class="container">
+                &copy; 2021 - Attendance_System - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+            </div>
+        </footer>
+        <script src="~/lib/jquery/dist/jquery.min.js"></script>
+        <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="~/js/site.js" asp-append-version="true"></script>
+        @RenderSection("Scripts", required: false)
+    </body>
+    </html>*@
+@using Microsoft.AspNetCore.Identity;
+@inject SignInManager<IdentityUser> SignInManager;
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - EmployeeManegmentSystem</title>
+    <link href="~/css/StyleSheet.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link href="~/lib/bootstrap/css/bootstrap.css" rel="stylesheet" />
+    <script src="~/lib/jquery/jquery.js"></script>
+    <script src="~/lib/jquery-validation/dist/jquery.validate.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script>
+    <script src="~/lib/bootstrap/js/bootstrap.js"></script>
+    <link href="~/lib/font-awesome/css/fontawesome.css" rel="stylesheet" />
+    <link href="~/css/site.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+    <div class="container">
+        <nav class="navbar navbar-expand-sm  navbar-dark bg-dark ">
+            <a class="navbar-brand" asp-action="index" asp-controller="Employee">
+                <img src="/images/employees.png" width="30" height="30" alt="Alternate Text" />
+            </a>
+
+            <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#collapsiblNavbar">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="collapsiblNavbar">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a asp-action="index" asp-controller="Employee" class="nav-link"> List </a>
+                    </li>
+                    |
+                    <li class="nav-item">
+                        <a asp-action="create" asp-controller="Employee" class="nav-link"> Create </a>
+                    </li>
+
+                </ul>
+
+                <ul class="navbar-nav ml-auto">
+                    @if (SignInManager.IsSignedIn(User))
+                    {
+                        <li class="nav-item">
+                            <form method="post" asp-controller="Account" asp-action="logout">
+                                <button type="submit" style="width:auto"
+                                        class="nav-link btn btn-link py-0">
+                                    Logout @User.Identity.Name
+                                </button>
+                            </form>
+                        </li>
+                    }
+                    else
+                    {
+                        <li class="nav-item">
+                            <a class="nav-link" asp-controller="Account" asp-action="register">
+                                Register
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" asp-controller="Account" asp-action="login">
+                                Login
+                            </a>
+                        </li>
+                    }
+
+
+                </ul>
+            </div>
+
+        </nav>
+
+
+        <div>
+            <main role="main" class="pb-3">
+                @RenderBody()
+            </main>
+        </div>
+    </div>
+
+
+    <footer class="border-top footer text-muted">
+        <div class="container">
+            &copy; 2021 - EmployeeManegmentSystem - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+        </div>
+    </footer>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

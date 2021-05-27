@@ -1,0 +1,15 @@
+﻿@inject SignInManager<IdentityUser> signinmanager;
+@model Attendance_System.ViewModels.AdminLoginVM;
+<h1>heyyyyyyyyyyyyyyy</h1>
+
+<div class="card m-3 card-header" style="min-width:18rem;max-width:30.5%">
+    <div class="card-header">
+        <h3>@User.Identity.Name</h3>
+    </div>
+    <img class="card-img-top " style="width:auto;height:300px;" src="" asp-append-version="true" />
+    <div class="card-footer text-center">
+        <a asp-controller="Home" asp-action="CreateEmployee" class="btn btn-primary m-1">Create Employee</a>
+        <a asp-controller="Home" asp-action="viewEmployees" class="btn btn-primary m-1">view Employees</a>
+        <a asp-controller="Home" asp-action="DeleteEmployee" class="btn btn-danger m-1">Delete Employee</a>
+    </div>
+</div>
